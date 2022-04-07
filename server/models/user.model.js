@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { Schema } = require("mongoose");
 
 const UserSchema = mongoose.Schema({
   name: {
@@ -17,7 +18,8 @@ const UserSchema = mongoose.Schema({
     default: false,
   },
   choice: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "Vote",
   },
 });
 

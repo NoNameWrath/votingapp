@@ -4,6 +4,8 @@
 
 GET /api/users?housename=godavari&gender=male
 
+- query db, and get users
+
 POST /api/vote
 
 ```json
