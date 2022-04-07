@@ -3,6 +3,6 @@ const router = express.Router();
 
 const { postVote } = require("../controllers/vote.controller");
 
-router.route("/").get(postVote);
+router.route("/").post(postVote);
 
 module.exports = router;

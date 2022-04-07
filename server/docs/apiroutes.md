@@ -2,9 +2,9 @@
 
 - post to db to update who voted for who
 
-GET /api/users?housename=godavari&gender=male
+GET /api/users?house=godavari&gender=male
 
-- query db, and get users
+- query db, and get users based on query params
 
 POST /api/vote
 
