@@ -5,7 +5,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Julee&family=Schoolbell&display=swap");
 
 html {
-  background: linear-gradient(to right, rgb(165, 243, 252), rgb(34, 211, 238));
+  background: linear-gradient(to right, #36d1dc, #5b86e5);
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100%;

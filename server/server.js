@@ -32,3 +32,4 @@ app.use(cors());
 // route handlers
 app.use("/api/users", require("./routes/user.route"));
 app.use("/api/vote", require("./routes/vote.route"));
+app.use("/api/results", require("./routes/results.route"));

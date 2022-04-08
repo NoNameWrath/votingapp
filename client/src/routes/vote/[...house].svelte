@@ -48,7 +48,7 @@
       const data = await response.json();
       if (data.status === "ok") {
         confetti = true;
-        await new Promise((r) => setTimeout(r, 3000));
+        await new Promise((r) => setTimeout(r, 500));
         window.location.href = `/vote/${house}`;
       }
     }
@@ -57,7 +57,7 @@
 
 <div>
   {#if confetti}
-    <Confetti durationInSeconds={2} />
+    <Confetti durationInSeconds={1} />
   {/if}
   <div class="grid place-content-center">
     <div class="mb-3 xl:w-96 m-10">
@@ -94,7 +94,7 @@
         class="grid flex-grow card h-96 w-96 m-10 rounded-box place-items-center"
       >
         <img
-          src="../../captains/{cap1.image}.png"
+          src="../../captains/{cap1.image}.jpeg"
           alt="picture of {cap1.name}"
         />
       </div>
@@ -102,7 +102,7 @@
         class="grid flex-grow card rounded-box m-10 h-96 w-96 place-items-center"
       >
         <img
-          src="../../captains/{cap2.image}.png"
+          src="../../captains/{cap2.image}.jpeg"
           alt="picture of {cap2.name}"
         />
       </div>
@@ -132,7 +132,7 @@
   </div>
   <div class="grid place-content-center m-24">
     {#if confetti}
-      <Confetti durationInSeconds={2} />
+      <Confetti durationInSeconds={1} />
     {/if}
     <button class="btn" on:click={vote}>VOTE!</button>
 
@@ -143,7 +143,7 @@
       </h2>
     {/if}
     {#if confetti}
-      <Confetti durationInSeconds={2} />
+      <Confetti durationInSeconds={1} />
     {/if}
   </div>
 </div>
