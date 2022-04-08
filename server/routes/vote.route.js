@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const { postVote } = require("../controllers/vote.controller");
+const { postVote, getCaptains } = require("../controllers/vote.controller");
 
-router.route("/").post(postVote);
+router.route("/").post(postVote).get(getCaptains);
 
 module.exports = router;

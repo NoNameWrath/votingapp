@@ -19,4 +19,10 @@ const postVote = async (req, res, next) => {
   return res.status(200).json({ status: "ok" });
 };
 
-module.exports = { postVote };
+const getCaptains = async (req, res, next) => {
+  const { house, gender } = req.query;
+  const captains = await VoteModel.find({ house, gender }).select("name image");
+  return res.status(200).json({ status: "ok", data: captains });
+};
+
+module.exports = { postVote, getCaptains };
