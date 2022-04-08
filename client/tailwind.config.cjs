@@ -4,6 +4,14 @@ const config = {
   daisyui: {
     themes: false,
   },
+
+  theme: {
+    extend: {
+      fontFamily: {
+        hero: ["Julee"],
+      },
+    },
+  },
 };
 
 module.exports = config;
