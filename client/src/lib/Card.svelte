@@ -5,12 +5,16 @@
   export let tag;
 </script>
 
-<div class="card card-compact w-96 border shadow-x1 mt-5">
-  <figure>
-    <img src={user.image} alt="avatar" />
-  </figure>
+<div class="bg-gray-800 rounded-lg shadow-lg border-2 mt-10 border-gray-700">
+  <div class="w-96 h-96 overflow-hidden">
+    <img
+      src="captains/{user.image}.jpeg"
+      alt="avatar"
+      class="rounded max-w-full h-auto"
+    />
+  </div>
   <div class="card-body">
-    <h2 class="card-title">{user.name}</h2>
-    <h3 class="card-side">{tag}</h3>
+    <h2 class="card-title text-white">{user.name}</h2>
+    <h3 class="card-side text-white">{tag}</h3>
   </div>
 </div>

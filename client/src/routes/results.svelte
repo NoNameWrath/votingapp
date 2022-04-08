@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import Card from "$lib/Card.svelte";
+  import A from "./vote/[...house].svelte";
 
   let votes = [];
   let voteendpoint = "http://localhost:1717/api/results";
@@ -11,14 +12,16 @@
     votes = userdata.data;
     console.log(votes);
   });
+  let showWinners = false;
 
-  /*
-  [
-    {house: godavari, boyscaptain boysvicecaptain girlscaptain girlsvicecaptain
-  ]
-  */
-
-  const winners = [
+  let winners = [
+    {
+      house: "cauvery",
+      boysCaptain: "",
+      boysViceCaptain: "",
+      girlsCaptain: "",
+      girlsViceCaptain: "",
+    },
     {
       house: "godavari",
       boysCaptain: "",
@@ -40,73 +43,93 @@
       girlsCaptain: "",
       girlsViceCaptain: "",
     },
-    {
-      house: "cauvery",
-      boysCaptain: "",
-      boysViceCaptain: "",
-      girlsCaptain: "",
-      girlsViceCaptain: "",
-    },
   ];
 
-  var goduBoys = votes.filter(function (item) {
-    return item.house == "godavari" && item.gender == "male";
-  });
-  var goduGirls = votes.filter(function (item) {
-    return item.house == "godavari" && item.gender == "female";
-  });
+  const getCaptains = async () => {
+    // cauvery boys (votes 0 and 1)
+    if (votes[0].voteCount > votes[1].voteCount) {
+      winners[0].boysCaptain = votes[0]._id;
+      winners[0].boysViceCaptain = votes[1]._id;
+    } else if (votes[1].voteCount > votes[0].voteCount) {
+      winners[0].boysCaptain = votes[1]._id;
+      winners[0].boysViceCaptain = votes[0]._id;
+    }
 
-  var sutlejBoys = votes.filter(function (item) {
-    return item.house == "sutlej" && item.gender == "male";
-  });
-  var sutlejGirls = votes.filter(function (item) {
-    return item.house == "sutlej" && item.gender == "female";
-  });
+    // cauvery girls ( votes 2 and 3)
+    if (votes[2].voteCount > votes[3].voteCount) {
+      winners[0].girlsCaptain = votes[2]._id;
+      winners[0].girlsViceCaptain = votes[3]._id;
+    } else if (votes[3].voteCount > votes[2].voteCount) {
+      winners[0].girlsCaptain = votes[3]._id;
+      winners[0].girlsViceCaptain = votes[2]._id;
+    }
 
-  var narmadaBoys = votes.filter(function (item) {
-    return item.house == "narmada" && item.gender == "male";
-  });
-  var narmadaGirls = votes.filter(function (item) {
-    return item.house == "narmada" && item.gender == "female";
-  });
+    // godavari boys ( votes 4 and 5 )
+    if (votes[4].voteCount > votes[5].voteCount) {
+      winners[1].boysCaptain = votes[4]._id;
+      winners[1].boysViceCaptain = votes[5]._id;
+    } else if (votes[5].voteCount > votes[4].voteCount) {
+      winners[1].boysCaptain = votes[5]._id;
+      winners[1].boysViceCaptain = votes[4]._id;
+    }
 
-  var cauveryBoys = votes.filter(function (item) {
-    return item.house == "cauvery" && item.gender == "male";
-  });
-  var cauveryGirls = votes.filter(function (item) {
-    return item.house == "cauvery" && item.gender == "female";
-  });
+    // godavari girls ( votes 6 and 7 )
+    if (votes[6].voteCount > votes[7].voteCount) {
+      winners[1].girlsCaptain = votes[6]._id;
+      winners[1].girlsViceCaptain = votes[7]._id;
+    } else if (votes[7].voteCount > votes[6].voteCount) {
+      winners[1].girlsCaptain = votes[7]._id;
+      winners[1].girlsViceCaptain = votes[6]._id;
+    }
 
-  winners[0].boysCaptain = Math.max(goduBoys.map((a) => a.voteCount));
-  winners[0].boysViceCaptain = Math.min(goduBoys.map((a) => a.voteCount));
+    // narmada boys (votes 8 and 9)
+    if (votes[8].voteCount > votes[9].voteCount) {
+      winners[2].boysCaptain = votes[8]._id;
+      winners[2].boysViceCaptain = votes[9]._id;
+    } else if (votes[9].voteCount > votes[8].voteCount) {
+      winners[2].boysCaptain = votes[9]._id;
+      winners[2].boysViceCaptain = votes[8]._id;
+    }
 
-  winners[0].girlsCaptain = Math.max(goduGirls.map((a) => a.voteCount));
-  winners[0].girlsViceCaptain = Math.min(goduGirls.map((a) => a.voteCount));
+    // narmada girls ( votes 10 and 11)
+    if (votes[10].voteCount > votes[11].voteCount) {
+      winners[2].girlsCaptain = votes[10]._id;
+      winners[2].girlsViceCaptain = votes[11]._id;
+    } else if (votes[11].voteCount > votes[10].voteCount) {
+      winners[2].girlsCaptain = votes[11]._id;
+      winners[2].girlsViceCaptain = votes[10]._id;
+    }
 
-  winners[1].boysCaptain = Math.max(narmadaBoys.map((a) => a.voteCount));
-  winners[1].boysViceCaptain = Math.min(narmadaBoys.map((a) => a.voteCount));
+    // sutlej boys ( votes 12 and 13)
+    if (votes[12].voteCount > votes[13].voteCount) {
+      winners[3].boysCaptain = votes[12]._id;
+      winners[3].boysViceCaptain = votes[13]._id;
+    } else if (votes[13].voteCount > votes[12].voteCount) {
+      winners[3].boysCaptain = votes[13]._id;
+      winners[3].boysViceCaptain = votes[12]._id;
+    }
 
-  winners[1].girlsCaptain = Math.max(narmadaGirls.map((a) => a.voteCount));
-  winners[1].girlsViceCaptain = Math.min(narmadaGirls.map((a) => a.voteCount));
+    // sutlej girls ( votes 14 and 15 )
+    if (votes[14].voteCount > votes[15].voteCount) {
+      winners[3].girlsCaptain = votes[14]._id;
+      winners[3].girlsViceCaptain = votes[15]._id;
+    } else if (votes[15].voteCount > votes[14].voteCount) {
+      winners[3].girlsCaptain = votes[15]._id;
+      winners[3].girlsViceCaptain = votes[14]._id;
+    }
 
-  winners[2].boysCaptain = Math.max(sutlejBoys.map((a) => a.voteCount));
-  winners[2].boysViceCaptain = Math.min(sutlejBoys.map((a) => a.voteCount));
+    console.log(winners);
+    showWinners = true;
+  };
 
-  winners[2].girlsCaptain = Math.max(sutlejGirls.map((a) => a.voteCount));
-  winners[2].girlsViceCaptain = Math.min(sutlejGirls.map((a) => a.voteCount));
-
-  winners[3].boysCaptain = Math.max(cauveryBoys.map((a) => a.voteCount));
-  winners[3].boysViceCaptain = Math.min(cauveryBoys.map((a) => a.voteCount));
-
-  winners[3].girlsCaptain = Math.max(cauveryGirls.map((a) => a.voteCount));
-  winners[3].girlsViceCaptain = Math.min(cauveryGirls.map((a) => a.voteCount));
-
-  console.log(winners);
+  function getCaptain(id) {
+    return votes.find((x) => x._id === id);
+  }
 </script>
 
 <img src="sishya.svg" alt="" />
 
-<div class="overflow-x-auto m-10">
+<div class="overflow-x-auto m-10 -mb-5">
   <table class="table w-full">
     <!-- head -->
     <thead>
@@ -130,71 +153,138 @@
   </table>
 </div>
 
-<h2>Godavari</h2>
-<div class="flex flex-col w-full">
-  <div class="grid h-20 card bg-base-300 rounded-box place-items-center">
-    <div class="flex w-full">
-      <div
-        class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center"
-      >
-        2
+<div class="btn m-10" on:click={getCaptains}>Get Captains</div>
+
+{#if showWinners}
+  <h1 class="text-3xl font-semibold ml-10">Boys</h1>
+  <h2 class="ml-10 text-2xl">Cauvery</h2>
+  <div class="flex flex-col w-full">
+    <div class="grid  card  rounded-box place-items-center">
+      <div class="flex w-full">
+        <div class="grid  flex-grow card  rounded-box place-items-center">
+          <Card user={getCaptain(winners[0].boysCaptain)} tag="Captain" />
+        </div>
+        <div class="grid flex-grow card  rounded-box place-items-center">
+          <Card
+            user={getCaptain(winners[0].boysViceCaptain)}
+            tag="Vice Captain"
+          />
+        </div>
       </div>
-      <div
-        class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center"
-      >
-        2
+    </div>
+
+    <div class="divider" />
+    <h2 class="ml-10  text-2xl">Godavari</h2>
+    <div class="grid  card  rounded-box place-items-center">
+      <div class="flex w-full">
+        <div class="grid  flex-grow card  rounded-box place-items-center">
+          <Card user={getCaptain(winners[1].boysCaptain)} tag="Captain" />
+        </div>
+        <div class="grid  flex-grow card  rounded-box place-items-center">
+          <Card
+            user={getCaptain(winners[1].boysViceCaptain)}
+            tag="Vice Captain"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="divider" />
+    <h2 class="ml-10  text-2xl">Narmada</h2>
+    <div class="grid  card  rounded-box place-items-center">
+      <div class="flex w-full">
+        <div class="grid  flex-grow card  rounded-box place-items-center">
+          <Card user={getCaptain(winners[2].boysCaptain)} tag="Captain" />
+        </div>
+        <div class="grid  flex-grow card  rounded-box place-items-center">
+          <Card
+            user={getCaptain(winners[2].boysViceCaptain)}
+            tag="Vice Captain"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="divider" />
+    <h2 class="ml-10 md-10 text-2xl">Sutlej</h2>
+    <div class="grid  card  rounded-box place-items-center">
+      <div class="flex w-full">
+        <div class="grid  flex-grow card  rounded-box place-items-center">
+          <Card user={getCaptain(winners[3].boysCaptain)} tag="Captain" />
+        </div>
+        <div class="grid  flex-grow card  rounded-box place-items-center">
+          <Card
+            user={getCaptain(winners[3].boysViceCaptain)}
+            tag="Vice Captain"
+          />
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="divider" />
-  <h2>Sutlej</h2>
-  <div class="grid h-20 card bg-base-300 rounded-box place-items-center">
-    <div class="flex w-full">
-      <div
-        class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center"
-      >
-        1
-      </div>
-      <div
-        class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center"
-      >
-        2
+  <h1 class="text-3xl font-semibold ml-10">Girls</h1>
+  <h2 class="ml-10 text-2xl">Cauvery</h2>
+  <div class="flex flex-col w-full">
+    <div class="grid  card  rounded-box place-items-center">
+      <div class="flex w-full">
+        <div class="grid  flex-grow card  rounded-box place-items-center">
+          <Card user={getCaptain(winners[0].girlsCaptain)} tag="Captain" />
+        </div>
+        <div class="grid  flex-grow card  rounded-box place-items-center">
+          <Card
+            user={getCaptain(winners[0].girlsViceCaptain)}
+            tag="Vice Captain"
+          />
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="divider" />
-  <h2>Narmada</h2>
-  <div class="grid h-20 card bg-base-300 rounded-box place-items-center">
-    <div class="flex w-full">
-      <div
-        class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center"
-      >
-        1
-      </div>
-      <div
-        class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center"
-      >
-        2
+    <div class="divider" />
+    <h2 class="ml-10 text-2xl">Godavari</h2>
+    <div class="grid   card  rounded-box place-items-center">
+      <div class="flex w-full">
+        <div class="grid   flex-grow card  rounded-box place-items-center">
+          <Card user={getCaptain(winners[1].girlsCaptain)} tag="Captain" />
+        </div>
+        <div class="grid   flex-grow card  rounded-box place-items-center">
+          <Card
+            user={getCaptain(winners[1].girlsViceCaptain)}
+            tag="Vice Captain"
+          />
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="divider" />
-  <h2>Cauvery</h2>
-  <div class="grid h-20 card bg-base-300 rounded-box place-items-center">
-    <div class="flex w-full">
-      <div
-        class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center"
-      >
-        1
+    <div class="divider" />
+    <h2 class="ml-10 text-2xl">Narmada</h2>
+    <div class="grid   card  rounded-box place-items-center">
+      <div class="flex w-full">
+        <div class="grid   flex-grow card  rounded-box place-items-center">
+          <Card user={getCaptain(winners[2].girlsCaptain)} tag="Captain" />
+        </div>
+        <div class="grid   flex-grow card  rounded-box place-items-center">
+          <Card
+            user={getCaptain(winners[2].girlsViceCaptain)}
+            tag="Vice Captain"
+          />
+        </div>
       </div>
-      <div
-        class="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center"
-      >
-        2
+    </div>
+
+    <div class="divider" />
+    <h2 class="ml-10 text-2xl">Sutlej</h2>
+    <div class="grid   card  rounded-box place-items-center mb-24">
+      <div class="flex w-full">
+        <div class="grid   flex-grow card  rounded-box place-items-center">
+          <Card user={getCaptain(winners[3].girlsCaptain)} tag="Captain" />
+        </div>
+        <div class="grid   flex-grow card  rounded-box place-items-center">
+          <Card
+            user={getCaptain(winners[3].girlsViceCaptain)}
+            tag="Vice Captain"
+          />
+        </div>
       </div>
     </div>
   </div>
-</div>
+{/if}
