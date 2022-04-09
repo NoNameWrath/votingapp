@@ -83,11 +83,14 @@
         bind:value={selectedUser}
       >
         {#each users as user}
-          <option value={user} disabled={user.voted}>{user.name}</option>
+          <option value={user} disabled={user.voted}
+            >{user.name} - Grade {user.grade}</option
+          >
         {/each}
       </select>
     </div>
   </div>
+
   <div class="grid place-content-center">
     <div class="flex w-full">
       <div
@@ -108,6 +111,7 @@
       </div>
     </div>
   </div>
+
   <div class="grid place-content-center">
     <div class="flex">
       <div class="grid h-10 mr-64 flex-grow card place-items-center">
@@ -130,18 +134,26 @@
       </div>
     </div>
   </div>
+
   <div class="grid place-content-center m-24">
     {#if confetti}
       <Confetti durationInSeconds={1} />
     {/if}
-    <button class="btn" on:click={vote}>VOTE!</button>
 
-    {#if confirm}
-      <h2>
-        Confirm: {selectedUser.name} is voting for {selectedChoice.name}
-        <br />Click Vote again and cast your vote!
-      </h2>
-    {/if}
+    <button
+      class="btn w-32 {confirm ? 'bg-green-700' : 'bg-gray-700'}"
+      disabled={selectedUser != undefined && selectedChoice != undefined
+        ? false
+        : true}
+      on:click={vote}
+    >
+      {#if !confirm}
+        Vote
+      {:else}
+        Confirm
+      {/if}
+    </button>
+
     {#if confetti}
       <Confetti durationInSeconds={1} />
     {/if}
