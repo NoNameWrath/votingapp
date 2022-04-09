@@ -6,4 +6,12 @@ const getUserData = async (req, res, next) => {
   return res.status(200).json({ status: "ok", data: users });
 };
 
-module.exports = { getUserData };
+const addUser = async (req, res, next) => {
+  const { name, grade, section, gender, house } = req.body;
+
+  const user = await UserModel.create({ name, grade, section, gender, house });
+  console.log(user);
+  return res.status(200).json({ status: "ok" });
+};
+
+module.exports = { getUserData, addUser };

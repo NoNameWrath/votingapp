@@ -5,6 +5,12 @@ const UserSchema = mongoose.Schema({
   name: {
     type: String,
   },
+  grade: {
+    type: Number,
+  },
+  section: {
+    type: String,
+  },
   house: {
     type: String,
     enum: ["godavari", "narmada", "cauvery", "sutlej"],
