@@ -28,5 +28,9 @@
         </div>
       </a>
     </div>
+
+    <div class="grid flex-grow p-5 card  rounded-box place-items-center">
+      <a href="/adduser" class="btn">Add new user</a>
+    </div>
   </div>
 </div>
