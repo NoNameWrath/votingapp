@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
   import Card from "$lib/Card.svelte";
-  import A from "./vote/[...house].svelte";
 
   let votes = [];
   let voteendpoint = "http://localhost:1717/api/results";
@@ -53,6 +52,8 @@
     } else if (votes[1].voteCount > votes[0].voteCount) {
       winners[0].boysCaptain = votes[1]._id;
       winners[0].boysViceCaptain = votes[0]._id;
+    } else {
+      console.log("equal");
     }
 
     // cauvery girls ( votes 2 and 3)

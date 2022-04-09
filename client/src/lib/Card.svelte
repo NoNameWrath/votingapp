@@ -16,5 +16,6 @@
   <div class="card-body">
     <h2 class="card-title text-white">{user.name}</h2>
     <h3 class="card-side text-white">{tag}</h3>
+    <h4 class="card-side text-white">Vote Count: {user.voteCount}</h4>
   </div>
 </div>
