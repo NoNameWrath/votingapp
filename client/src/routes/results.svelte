@@ -3,7 +3,7 @@
   import Card from "$lib/Card.svelte";
 
   let votes = [];
-  let voteendpoint = "https://voting-soulninja-dev.vercel.app/api/results";
+  let voteendpoint = "https://sishyavoting2022.herokuapp.com/api/results";
 
   onMount(async function () {
     const response = await fetch(voteendpoint);

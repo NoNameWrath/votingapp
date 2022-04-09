@@ -16,8 +16,8 @@
   let confetti = false;
 
   [house, gender] = params.split("/");
-  const usersendpoint = `https://voting-soulninja-dev.vercel.app/api/users?house=${house}&gender=${gender}`;
-  const captainendpoint = `https://voting-soulninja-dev.vercel.app/api/vote?house=${house}&gender=${gender}`;
+  const usersendpoint = `https://sishyavoting2022.herokuapp.com/api/users?house=${house}&gender=${gender}`;
+  const captainendpoint = `https://sishyavoting2022.herokuapp.com/api/vote?house=${house}&gender=${gender}`;
 
   onMount(async function () {
     const userresponse = await fetch(usersendpoint);
@@ -34,7 +34,7 @@
     if (!confirm) {
       confirm = !confirm;
     } else {
-      const endpoint = `https://voting-soulninja-dev.vercel.app/api/vote`;
+      const endpoint = `https://sishyavoting2022.herokuapp.com/api/vote`;
       const response = await fetch(endpoint, {
         method: "POST",
         headers: {

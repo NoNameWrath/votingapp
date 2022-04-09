@@ -10,7 +10,7 @@
     console.log(gender);
     console.log(house);
 
-    const apiurl = "https://voting-soulninja-dev.vercel.app/api/users/add";
+    const apiurl = "https://sishyavoting2022.herokuapp.com/api/users/add";
     const req = await fetch(apiurl, {
       method: "POST",
       headers: {
