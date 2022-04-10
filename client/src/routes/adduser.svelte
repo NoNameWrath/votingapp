@@ -52,7 +52,7 @@
         name="section"
         value="A"
         bind:group={section}
-        class="radio w-5 h-5"
+        class="radio w-5 h-5 align-middle"
         required
       />
       A</label
@@ -64,7 +64,7 @@
         value="B"
         bind:group={section}
         name="section"
-        class="radio w-5 h-5"
+        class="radio w-5 h-5 align-middle"
         required
       />
       B</label
@@ -76,7 +76,7 @@
         bind:group={section}
         name="section"
         id="C"
-        class="radio w-5 h-5"
+        class="radio w-5 h-5 align-middle"
         required
       />
       C</label
@@ -92,7 +92,7 @@
         name="gender"
         value="male"
         bind:group={gender}
-        class="radio w-5 h-5"
+        class="radio w-5 h-5 align-middle"
         required
       />
       Male</label
@@ -104,7 +104,7 @@
         id="F"
         bind:group={gender}
         value="female"
-        class="radio w-5 h-5"
+        class="radio w-5 h-5 align-middle"
         required
       />
       Female</label
@@ -121,7 +121,7 @@
         name="house"
         bind:group={house}
         value="cauvery"
-        class="radio w-5 h-5"
+        class="radio w-5 h-5 align-middle"
         required
       />
       Cauvery</label
@@ -133,7 +133,7 @@
         bind:group={house}
         value="godavari"
         name="house"
-        class="radio w-5 h-5"
+        class="radio w-5 h-5 align-middle"
         required
       />
       Godavari</label
@@ -144,7 +144,7 @@
         value="narmada"
         bind:group={house}
         name="house"
-        class="radio w-5 h-5"
+        class="radio w-5 h-5 align-middle"
         required
         id="Narmada"
       />
@@ -157,7 +157,7 @@
         value="sutlej"
         bind:group={house}
         name="house"
-        class="radio w-5 h-5"
+        class="radio w-5 h-5 align-middle"
         required
       />
       Sutlej</label

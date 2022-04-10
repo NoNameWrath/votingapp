@@ -115,20 +115,23 @@
   <div class="grid place-content-center">
     <div class="flex">
       <div class="grid h-10 mr-64 flex-grow card place-items-center">
-        <label class="text-lg">
+        <label class="text-2xl">
           <input
             type="radio"
             bind:group={selectedChoice}
             value={cap1}
+            class="radio w-7 h-7 mr-2 pt-1 align-middle"
           />{cap1.name}
         </label>
       </div>
       <div class="grid h-10 flex-grow ml-12 card place-items-center">
-        <label class="text-lg">
-          <input
+        <label class="text-2xl">
+          <input 
+          
             type="radio"
             bind:group={selectedChoice}
             value={cap2}
+            class="radio w-7 h-7 mr-2 pt-1 align-middle"
           />{cap2.name}
         </label>
       </div>
