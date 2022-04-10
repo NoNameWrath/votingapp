@@ -5,11 +5,9 @@
   let house;
   let grade;
 
+
   const handleSubmit = async () => {
-    console.log(name);
-    console.log(section);
-    console.log(gender);
-    console.log(house);
+    
 
     const apiurl = "https://sishyavoting2022.herokuapp.com/api/users/add";
     const req = await fetch(apiurl, {
@@ -19,6 +17,7 @@
       },
       body: JSON.stringify({
         name,
+        grade,
         section,
         gender,
         house,
