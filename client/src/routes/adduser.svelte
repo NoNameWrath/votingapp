@@ -3,6 +3,7 @@
   let section;
   let gender;
   let house;
+  let grade;
 
   const handleSubmit = async () => {
     console.log(name);
@@ -161,6 +162,91 @@
         required
       />
       Sutlej</label
+    ><br />
+    <p class="text-2xl"><strong>Grade:</strong></p>
+    <label for="6">
+      <input
+        type="radio"
+        id="6"
+        value="6"
+        bind:group={grade}
+        name="grade"
+        class="radio w-5 h-5 align-middle"
+        required
+      />
+      6</label
+    ><br />
+    <label for="7">
+      <input
+        type="radio"
+        id="7"
+        value="7"
+        bind:group={grade}
+        name="grade"
+        class="radio w-5 h-5 align-middle"
+        required
+      />
+      7</label
+    ><br />
+    <label for="8">
+      <input
+        type="radio"
+        id="8"
+        value="8"
+        bind:group={grade}
+        name="grade"
+        class="radio w-5 h-5 align-middle"
+        required
+      />
+      8</label
+    ><br />
+    <label for="9">
+      <input
+        type="radio"
+        id="9"
+        value="9"
+        bind:group={grade}
+        name="grade"
+        class="radio w-5 h-5 align-middle"
+        required
+      />
+      9</label
+    ><br />
+    <label for="10">
+      <input
+        type="radio"
+        id="10"
+        value="10"
+        bind:group={grade}
+        name="grade"
+        class="radio w-5 h-5 align-middle"
+        required
+      />
+      10</label
+    ><br />
+    <label for="11">
+      <input
+        type="radio"
+        id="11"
+        value="11"
+        bind:group={grade}
+        name="grade"
+        class="radio w-5 h-5 align-middle"
+        required
+      />
+      11</label
+    ><br />
+    <label for="12">
+      <input
+        type="radio"
+        id="12"
+        value="12"
+        bind:group={grade}
+        name="grade"
+        class="radio w-5 h-5 align-middle"
+        required
+      />
+      12</label
     ><br />
   </div>
   <button
